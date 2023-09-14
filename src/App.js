@@ -1,16 +1,32 @@
-import './App.css';
-import Relogio from './components/Relogio';
+import "./App.css";
+import {
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from "react-router-dom";
+import PaginaInicial from "./screens/PaginaInicial";
+import PaginaContato from "./screens/PaginaContato";
+import PaginaSobre from "./screens/PaginaSobre";
+
+const router = createBrowserRouter([
+  {
+    path: "*",
+    Component: RootNavigation,
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <h1> Meu App em React</h1>
-      <p> Meu primeiro app em React</p>
-      <Relogio></Relogio>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
-
-
+function RootNavigation() {
+  return (
+    <Routes>
+      <Route path="/" element={<PaginaInicial />} />
+      <Route path="/contato" element={<PaginaContato />} />
+      <Route path="/sobre" element={<PaginaSobre />} />
+    </Routes>
+  );
+}
 export default App;
